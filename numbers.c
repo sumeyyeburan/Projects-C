@@ -1,154 +1,156 @@
 #include <stdio.h>
-#include <stdlib.h> // exit fonksiyonu için gerekli
+#include <stdlib.h> // Needed for the exit function
 
 void armstrong_number();
 void fibonacci_number();
-void polindrome_number();
+void palindrome_number();
 void info();
 
 int main(){
-	int op;
-	 // sonsuz dongu
-	while(1){
-		
-		printf("\n-----------------------------------------------------\n");
-		printf("\n1.Armstrong Sayi\n2.Fibonacci Dizisi\n3.Polindrom Sayi\n4.Bilgi\n5.Cikis\n\nYapmak istediginiz islemin numarasini giriniz: ");
-		scanf("%d",&op);
-		
-		switch(op){
-			case 1:
-				armstrong_number();
-				break;
-			case 2:
-				fibonacci_number();
-				break;
-			case 3:
-				polindrome_number();
-				break;
-			case 4:
-				info();
-				break;
-			case 5:
-				printf("\nProgramdan cikiliyor...\n");
-				exit(0);
-				break; //teknik olarak  gerekli deðil.Okunabilirlik açýsýndan eklenmiþtir.
-			default:
-				printf("\nGecersiz secim. Lutfen tekrar deneyin.\n\n");
-		}	
-	}
-	return 0;
+    int op;
+    
+    // Infinite loop
+    while(1){
+        
+        printf("\n-----------------------------------------------------\n");
+        printf("\n1. Armstrong Number\n2. Fibonacci Series\n3. Palindrome Number\n4. Information\n5. Exit\n\nEnter the number of the operation you want to perform: ");
+        scanf("%d",&op);
+        
+        switch(op){
+            case 1:
+                armstrong_number();
+                break;
+            case 2:
+                fibonacci_number();
+                break;
+            case 3:
+                palindrome_number();
+                break;
+            case 4:
+                info();
+                break;
+            case 5:
+                printf("\nExiting the program...\n");
+                exit(0);
+                break; // Technically not necessary, but improves readability.
+            default:
+                printf("\nInvalid choice. Please try again.\n\n");
+        }   
+    }
+    return 0;
 }
 
 void armstrong_number(){
-	printf("\n\n**** Armstrong Sayi Bulma Programi ****\n");
-	printf("=======================================\n\n");
-	
-	int number,temp,digit=0,remainder,result=0;
-	int i;
-	
-	printf("Lutfen bir sayi giriniz: ");
-	scanf("%d",&number);
-	
-	temp=number; // asil sayiyi kaybetmemek icin
-	// sayinin basamak sayisini bulma
-	while(temp!=0){
-		temp=temp/10;
-		digit++;
-	}
-	
-	temp=number;
-	while(temp!=0){
-		remainder=temp%10;
-		int sum=1;
-		for(i=0;i<digit;i++){
-			sum=sum*remainder;
-		}
-		result=result+sum;
-		temp=temp/10;
-	}
-	
-	if(result==number){
-		printf("\n%d sayisi bir Armstrong sayidir.\n\n",number);
-	}
-	else{
-		printf("\n%d sayisi bir Armstrong sayidir degildir.\n\n",number);
-	}
-	
+    printf("\n\n**** Armstrong Number Program ****\n");
+    printf("=======================================\n\n");
+    
+    int number, temp, digit = 0, remainder, result = 0;
+    int i;
+    
+    printf("Enter a number: ");
+    scanf("%d", &number);
+    
+    temp = number; // To preserve the original number
+    // Finding the number of digits in the number
+    while(temp != 0){
+        temp = temp / 10;
+        digit++;
+    }
+    
+    temp = number;
+    while(temp != 0){
+        remainder = temp % 10;
+        int sum = 1;
+        for(i = 0; i < digit; i++){
+            sum = sum * remainder;
+        }
+        result = result + sum;
+        temp = temp / 10;
+    }
+    
+    if(result == number){
+        printf("\n%d is an Armstrong number.\n\n", number);
+    }
+    else{
+        printf("\n%d is not an Armstrong number.\n\n", number);
+    }
+    
 }
 
 void fibonacci_number(){
-	printf("\n\n**** Fibonacci Dizisi ****\n");
-	printf("=======================================\n\n");
-	
-	int choice;
-	int number,i,f1=1,f2=1,f3=0;
-	
-	printf("Oncelikle yapmak istediginiz islemi seciniz...\n\n1-Girdigim siraya kadar Fibonacci dizisinin siralanmasi\n2-Girdigim siradaki Fibonacci sayisi nedir?\n\nSeciminiz: ");
-	scanf("%d",&choice);
-	
-	if(choice==1){
-		printf("\nLutfen bir sayi giriniz: ");
-		scanf("%d",&number);
-		
-		printf("\n%d\t%d\t",f1,f2);
-		for(i=0;i<number-2;i++){
-			f3=f1+f2;
-			printf("%d\t",f3);
-			f1=f2;
-			f2=f3;
-		}
-	}
-	else if(choice==2){
-		printf("\nLutfen bir sayi giriniz: ");
-		scanf("%d",&number);
-		
-		for(i=0;i<number-2;i++){
-			f3=f1+f2;
-			f1=f2;
-			f2=f3;
-		}
-		
-		if(number==1 || number==2){
-			f3=1;
-		}
-		
-		printf("\n%d. siradaki Fibonacci sayisi: %d",number,f3);
-	}
-	else{
-		printf("\nGecersiz sayi girisi yaptiniz!\n");
-	}
-	printf("\n");
+    printf("\n\n**** Fibonacci Series ****\n");
+    printf("=======================================\n\n");
+    
+    int choice;
+    int number, i, f1 = 1, f2 = 1, f3 = 0;
+    
+    printf("First, choose the operation you want to perform...\n\n1. Display Fibonacci series up to a given number\n2. Find the Fibonacci number at a given position\n\nYour choice: ");
+    scanf("%d", &choice);
+    
+    if(choice == 1){
+        printf("\nEnter a number: ");
+        scanf("%d", &number);
+        
+        printf("\n%d\t%d\t", f1, f2);
+        for(i = 0; i < number - 2; i++){
+            f3 = f1 + f2;
+            printf("%d\t", f3);
+            f1 = f2;
+            f2 = f3;
+        }
+    }
+    else if(choice == 2){
+        printf("\nEnter a position: ");
+        scanf("%d", &number);
+        
+        for(i = 0; i < number - 2; i++){
+            f3 = f1 + f2;
+            f1 = f2;
+            f2 = f3;
+        }
+        
+        if(number == 1 || number == 2){
+            f3 = 1;
+        }
+        
+        printf("\nThe Fibonacci number at position %d: %d", number, f3);
+    }
+    else{
+        printf("\nInvalid input!\n");
+    }
+    printf("\n");
 }
 
-void polindrome_number(){
-	printf("\n\n**** Polindrom Sayi Bulma Programi ****\n");
-	printf("=======================================\n\n");
-	
-	int number,reversedNumber=0,remainder,temp;
-	
-	printf("Lutfen bir sayi giriniz: ");
-	scanf("%d",&number);
-	
-	temp=number;
-	while(temp!=0){
-		remainder=temp%10;
-		reversedNumber=reversedNumber*10+remainder;
-		temp=temp/10;
-	}
-	
-	if(reversedNumber==number){
-		printf("\n%d sayisi bir Polindrom sayidir.\n\n",number);
-	}
-	else{
-		printf("\n%d sayisi bir Polindrom sayidir degildir.\n\n",number);
-	}
+void palindrome_number(){
+    printf("\n\n**** Palindrome Number Program ****\n");
+    printf("=======================================\n\n");
+    
+    int number, reversedNumber = 0, remainder, temp;
+    
+    printf("Enter a number: ");
+    scanf("%d", &number);
+    
+    temp = number;
+    while(temp != 0){
+        remainder = temp % 10;
+        reversedNumber = reversedNumber * 10 + remainder;
+        temp = temp / 10;
+    }
+    
+    if(reversedNumber == number){
+        printf("\n%d is a palindrome number.\n\n", number);
+    }
+    else{
+        printf("\n%d is not a palindrome number.\n\n", number);
+    }
 }
 
 void info(){
-	printf("\n\n**** Bilgilendirme Metni ****\n");
-	printf("=======================================\n\n");
-	
-	printf("1.Armstrong Sayi\n  n basamakli bir sayinin her bir basamaginin n'inci kuvvetlerinin toplaminin, sayinin kendisine esit oldugu sayidir.\n Ornek: 153 -> 1^3+5^3+3^3=153\n");
-	printf("\n2.Fibonacci Dizisi\n  Her bir sayinin kendisinden once gelen iki sayinin toplamiyla elde edildigi bir sayi dizisidir.1 ve 1 ile baslayip    devam eder.\n");
-	printf("\n3.Polindrom Sayi\n  Tersten okundugunda da ayni olan sayilardir.\n Ornek: 121 -> 121\n");
+    printf("\n\n**** Information ****\n");
+    printf("=======================================\n\n");
+    
+    printf("1. Armstrong Number\n   An n-digit number that is equal to the sum of nth powers of its digits.\n   Example: 153 -> 1^3 + 5^3 + 3^3 = 153\n");
+    printf("\n2. Fibonacci Series\n   A series of numbers in which each number (Fibonacci number) is the sum of the two preceding ones, starting from 1 and 1.\n");
+    printf("\n3. Palindrome Number\n   Numbers that read the same backward as forward.\n   Example: 121 -> 121\n");
 }
+
