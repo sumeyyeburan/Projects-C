@@ -9,11 +9,11 @@ void startGame();
 
 int main(){
 
-    // Rastgele sayý üreticisini zaman ile baþlat
+    // Initialize the random number generator with time
     srand(time(NULL));
 
-    printf("\n**** SAYI TAHMINI OYUNUNA HOS GELDINIZ ! ****\n\n\n");
-    printf("Oyun hakkinda bilgi almak icin 1'e\nOyuna baslamak icin 2'ye \ntiklayiniz: ");
+    printf("\n**** WELCOME TO THE NUMBER GUESSING GAME ! ****\n\n\n");
+    printf("Press 1 for game information\nPress 2 to start the game\nEnter your choice: ");
     scanf("%d", &options);
 
     switch (options) {
@@ -24,7 +24,7 @@ int main(){
             startGame();
             break;
         default:
-            printf("Gecersiz secim. Programdan cikiliyor.\n");
+            printf("Invalid choice. Exiting the program.\n");
             break;
     }
 
@@ -33,14 +33,14 @@ int main(){
 
 void gameInfo() {
     printf("\n----------------------------------------------------------\n");
-    printf("\nOyunumuz bir sayi tahmini oyunudur.\nRandom bir sekilde sayi belirlenir ve siz o sayiyi tahmin etmeye calisirsiniz.\n");
-    printf("Deneme hakkiniz 5'tur.\nSayilar 0 ve 100 arasinda belirlenir.\nSayi hakkinda size ipuclarý da verilecektir.\nIyi eglenceler dilerim :)");
-    printf("\n\nOyuna baslamak istiyorsaniz 2'ye, istemiyorsaniz 0'a \ntiklayiniz: ");
+    printf("\nOur game is a number guessing game.\nA random number is chosen and you try to guess it.\n");
+    printf("You have 5 attempts.\nThe number is between 0 and 100.\nHints will be given to help you.\nHave fun :)\n");
+    printf("\n\nPress 2 to start the game, or 0 to exit: ");
     scanf("%d", &options);
 
     if (options != 2) {
-        printf("\n---- Oyundan cikis yapiliyor... ----\n\n");
-        exit(0); // Programý sonlandýr
+        printf("\n---- Exiting the game... ----\n\n");
+        exit(0); // Terminate the program
     } else {
         startGame();
     }
@@ -50,36 +50,36 @@ void startGame() {
     int guess_number, random_number;
     int RIGHT = 5;
 
-    random_number = rand() % 101;
+    random_number = rand() % 101; // Generate random number between 0 and 100
 
     printf("\n----------------------------------------------------------\n");
-    printf("\n~~~~ Oyun Basliyor... ~~~~\n\n");
+    printf("\n~~~~ Game Starting... ~~~~\n\n");
 
     do {
-        printf("\nTahmininizi giriniz: ");
+        printf("\nEnter your guess: ");
         scanf("%d", &guess_number);
 
-        // Doðru tahmin
+        // Correct guess
         if (guess_number == random_number) {
-            printf("\nOyunu kazandiniz, TEBRIKLER!!\n");
-            printf("\n---- Oyundan cikis yapiliyor... ----\n\n");
+            printf("\nCongratulations, you won the game!!\n");
+            printf("\n---- Exiting the game... ----\n\n");
             return;
         }
-        // Tahmin büyükse
+        // Guess is too high
         else if (guess_number > random_number) {
-            printf("\nTahmininiz random sayidan buyuktur. Daha kucuk bir sayi giriniz.");
+            printf("\nYour guess is higher than the random number. Please enter a smaller number.");
         }
-        // Tahmin küçükse
+        // Guess is too low
         else {
-            printf("\nTahmininiz random sayidan kucuktur. Daha buyuk bir sayi giriniz.");
+            printf("\nYour guess is lower than the random number. Please enter a larger number.");
         }
 
         RIGHT--;
-        printf("\nKalan deneme hakkiniz: %d\n", RIGHT);
+        printf("\nRemaining attempts: %d\n", RIGHT);
 
     } while (RIGHT > 0);
 
-    printf("\n\nDeneme hakkiniz bitmistir.\n\nRandom sayi: %d\nOyunu kaybettiniz :(\n", random_number);
-    printf("\n---- Oyundan cikis yapiliyor... ----\n\n");
+    printf("\n\nYou ran out of attempts.\n\nRandom number: %d\nYou lost the game :(\n", random_number);
+    printf("\n---- Exiting the game... ----\n\n");
 }
 
